@@ -27,6 +27,10 @@ Besides the `start` script, there are also other scripts
 |`build-prod`|Builds the js/css bundle minified files in the `public` folder|
 
 
+# Creating Tests
+
+<a href="https://medium.freecodecamp.org/the-right-way-to-test-react-components-548a4736ab22">Worth reading principles for creating tests</a>
+
 # License
 
 This project is licensed under the MIT license, Copyright (c) 2017 Matías Farulla.
