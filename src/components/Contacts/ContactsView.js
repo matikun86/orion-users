@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import './Contacts.scss';
 
 const ContactsView = (props) => {
@@ -48,7 +49,7 @@ const ContactsView = (props) => {
 
 ContactsView.propTypes = {
   contacts: PropTypes.array.isRequired,
-  filter: PropTypes.string,
+  filter: PropTypes.string.isRequired,
   onContactClick: PropTypes.func.isRequired,
   onFilterChange: PropTypes.func.isRequired
 };
