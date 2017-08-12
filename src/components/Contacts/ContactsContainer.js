@@ -5,6 +5,7 @@ import actions from './../../actions.js'
 import API from './../../api'
 import ContactsView from "./ContactsView";
 import ContactCard from "./ContactCard";
+import update from 'immutability-helper';
 
 export class ContactsContainer extends React.Component {
 
@@ -12,21 +13,30 @@ export class ContactsContainer extends React.Component {
     super(props);
 
     this.state = {
-      contacts: props.contacts || []
+      contacts: props.contacts || [],
+      filter: props.filter || ''
     };
 
     this.onContactClick = this.onContactClick.bind(this);
+    this.onFilterChange = this.onFilterChange.bind(this);
   }
 
   componentDidMount() {
     API.get().then(contacts => {
-      this.setState({ contacts });
+      this.setState(update(this.state, {
+        contacts: { $set: contacts }
+      }));
     });
   }
 
   onContactClick(contact) {
-    console.log('clicked');
     this.props.actions.contactSelected(contact)
+  }
+
+  onFilterChange(event) {
+    this.setState(update(this.state, {
+      filter: { $set: event.target.value}
+    }));
   }
   
   render() {
@@ -34,7 +44,9 @@ export class ContactsContainer extends React.Component {
       <div className="contacts">
         <ContactsView
           contacts={this.state.contacts}
-          onContactClick={this.onContactClick} />
+          filter={this.state.filter}
+          onContactClick={this.onContactClick}
+          onFilterChange={this.onFilterChange} />
 
         <ContactCard />
       </div>

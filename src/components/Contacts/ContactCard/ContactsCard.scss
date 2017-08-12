@@ -1,54 +1,62 @@
 @import '../../../stylesheets/colors.scss';
 
 .contact-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  &.show {
-    animation: fadeIn 350ms linear;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 
-  button.close {
-    background-color: $lightest-grey;
-    border-radius: 30px;
-    height: 30px;
-    margin-top: 5px;
-    margin-right: 5px;
-    opacity: 1;
-    width: 30px;
-
-    > span {
-      opacity: .2;
-    }
-  }
-
-  .card-container {
-    background-image: url('/media/card.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    color: $lightest-grey;
-    min-height: 330px;
-    min-width: 530px;
-    padding: 40px 35px;
+  .contact-card-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     
-    @media (min-width: 768px) {
-      height: 350px;
-      width: 600px;
-      padding: 60px 40px;
+    &.show {
+      animation: fadeIn 350ms linear;
     }
-
-    .contact-name {
-      margin-bottom: 30px;
+  
+    button.close {
+      background-color: $lightest-grey;
+      border-radius: 30px;
+      height: 30px;
+      margin-top: 5px;
+      margin-right: 5px;
+      opacity: 1;
+      width: 30px;
+  
+      > span {
+        opacity: .2;
+      }
     }
-
-    .company-name {
-      margin-bottom: 25px;
-    }
-
-    .company-details p:not(.website) {
-      text-transform: capitalize;
+  
+    .card-container {
+      background-image: url('/media/card.jpg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      color: $lightest-grey;
+      min-height: 330px;
+      min-width: 530px;
+      padding: 40px 35px;
+      
+      @media (min-width: 768px) {
+        height: 350px;
+        width: 600px;
+        padding: 60px 40px;
+      }
+  
+      .contact-name {
+        margin-bottom: 30px;
+      }
+  
+      .company-name {
+        margin-bottom: 25px;
+      }
+  
+      .company-details p:not(.website) {
+        text-transform: capitalize;
+      }
     }
   }
 }
