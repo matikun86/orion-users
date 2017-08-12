@@ -3,11 +3,9 @@ import { shallow, mount } from 'enzyme';
 import assert from 'assert';
 import sinon from 'sinon';
 import _ from 'lodash';
-import API from './../../src/api';
 import { ContactsContainer } from '../../src/components/Contacts/ContactsContainer';
 import ContactsView from '../../src/components/Contacts/ContactsView';
-// https://github.com/airbnb/enzyme/issues/341
-import 'jsdom-global/register';
+import 'jsdom-global/register'; // https://github.com/airbnb/enzyme/issues/341
 
 const mockedContacts = [{
   id: 1,

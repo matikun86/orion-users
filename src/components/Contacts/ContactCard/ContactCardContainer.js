@@ -28,7 +28,7 @@ export class ContactCardContainer extends React.Component {
 
 function mapStateToProps(rootState) {
   return {
-    contact: rootState.contactsReducer.contactSelected || {},
+    contact: rootState.contactsReducer.contactSelected,
   };
 }
 
