@@ -1,3 +1,4 @@
-html, body {
-  height: 100%;
-}
+@import 'reset.scss';
+@import 'colors.scss';
+@import 'animations.scss';
+@import 'base.scss';

@@ -3,52 +3,62 @@ import { shallow, mount } from 'enzyme';
 import assert from 'assert';
 import sinon from 'sinon';
 import API from './../../src/api';
-import Contacts from '../../src/components/Contacts/index';
+import { ContactsContainer } from '../../src/components/Contacts/ContactsContainer';
+import ContactsView from '../../src/components/Contacts/ContactsView';
 // https://github.com/airbnb/enzyme/issues/341
 import 'jsdom-global/register';
 
+const mockedContacts = [{
+  id: 1,
+  name: 'Name 1',
+  username: 'username 1',
+  email: 'user1@name.com'
+}, {
+  id: 2,
+  name: 'Name 2',
+  username: 'username 2',
+  email: 'user2@name.com'
+}];
+
 describe('Contacts component', () => {
   describe('render()', () => {
-    let getStub;
-    const mockedUsers = [{
-      id: 1,
-      name: 'Name 1',
-      username: 'username 1',
-      email: 'user1@name.com'
-    }, {
-      id: 2,
-      name: 'Name 2',
-      username: 'username 2',
-      email: 'user2@name.com'
-    }];
-
-    // before running each test, stub API
-    beforeEach(() => {
-      getStub = sinon.stub(API, 'get').returns(Promise.resolve(mockedUsers));
-    });
-
-    // after running each test, restore to the original method to
-    // prevent "TypeError: Attempted to wrap get which is already wrapped"
-    // error when executing subsequent specs.
-    afterEach(() => {
-      API.get.restore();
-    });
-
     it('should render the component', () => {
-      const wrapper = shallow(<Contacts />);
+      const props = {actions:{}, contacts: []};
+      const wrapper = shallow(<ContactsContainer {...props}/>);
       assert.equal(wrapper.length, 1);
     });
+  });
+});
 
-    it('should get a list of users from API', () => {
-      sinon.spy(Contacts.prototype, 'componentDidMount');
 
-      const wrapper = mount(<Contacts />);
-      assert.ok(getStub.called);
-      assert.ok(Contacts.prototype.componentDidMount.calledOnce);
-      // Wait for setState to be done.
-      setTimeout(() => {
-        assert.equal(wrapper.update().find('table tbody tr').length, mockedUsers.length);
-      });
+describe('ContactsView', () => {
+  describe('render()', () => {
+    it('should render the component', () => {
+      const props = {
+        contacts: mockedContacts,
+        onContactClick: sinon.spy()
+      };
+      const wrapper = shallow(<ContactsView {...props}/>);
+      assert.equal(wrapper.length, 1);
+    });
+    
+    it('should show contacts', () => {
+      const props = {
+        contacts: mockedContacts,
+        onContactClick: sinon.spy()
+      };
+      const wrapper = shallow(<ContactsView {...props}/>);
+      assert.equal(wrapper.update().find('table tbody tr').length, mockedContacts.length);
+    });
+
+    it('should fire onContactClick on clicking a contact', () => {
+      const props = {
+        contacts: mockedContacts,
+        onContactClick: sinon.spy()
+      };
+      const wrapper = shallow(<ContactsView {...props}/>);
+      wrapper.find('table tbody tr').first().simulate('click');
+      assert.ok(props.onContactClick.called);
     });
   });
 });

@@ -16,11 +16,11 @@ const ContactsView = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.users.map((user, index) =>
-              <tr key={index} onClick={props.onContactClick}>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
+            {props.contacts.map((contact, index) =>
+              <tr key={index} onClick={() => props.onContactClick(contact) }>
+                <td>{contact.name}</td>
+                <td>{contact.username}</td>
+                <td>{contact.email}</td>
               </tr>
             )}
           </tbody>
@@ -31,7 +31,7 @@ const ContactsView = (props) => {
 };
 
 ContactsView.propTypes = {
-  users: PropTypes.array.isRequired,
+  contacts: PropTypes.array.isRequired,
   onContactClick: PropTypes.func.isRequired
 };
 
