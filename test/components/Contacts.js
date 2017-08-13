@@ -1,11 +1,10 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import assert from 'assert';
 import sinon from 'sinon';
 import _ from 'lodash';
 import { ContactsContainer } from '../../src/components/Contacts/ContactsContainer';
 import ContactsView from '../../src/components/Contacts/ContactsView';
-import 'jsdom-global/register'; // https://github.com/airbnb/enzyme/issues/341
 
 const mockedContacts = [{
   id: 1,

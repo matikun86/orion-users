@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import assert from 'assert';
-import sinon from 'sinon';
-import _ from 'lodash';
 import LettersView from '../../src/components/Letters/LettersView';
 
 const mockedGroups = {

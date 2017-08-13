@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/matikun86/orion-users"
   },
+  "engines": {
+    "node" : ">=6.11.2"
+  },
   "scripts": {
     "start": "webpack-dev-server -d --inline --hot --history-api-fallback --host localhost --port 8080",
     "build-dev": "webpack --config webpack.dev.config.js",
@@ -51,8 +54,6 @@
     "google-map-react": "^0.24.0",
     "ignore-styles": "^5.0.1",
     "immutability-helper": "^2.3.1",
-    "jsdom": "^11.1.0",
-    "jsdom-global": "^3.0.2",
     "lodash": "^4.17.4",
     "mocha": "^3.2.0",
     "node-sass": "^4.3.0",
