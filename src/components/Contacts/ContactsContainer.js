@@ -31,7 +31,7 @@ export class ContactsContainer extends React.Component {
   
   render() {
     return (
-      <div className="contacts">
+      <div className="content contacts">
         <ContactsView
           contacts={this.props.contacts}
           filter={this.state.filter}

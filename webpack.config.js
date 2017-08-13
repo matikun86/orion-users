@@ -1,6 +1,7 @@
 // http://webpack.github.io/docs/configuration.html
 // http://webpack.github.io/docs/webpack-dev-server.html
 var app_root = 'src'; // the app root folder: src, src_users, etc
+var webpack = require("webpack");
 var path = require('path');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -44,6 +45,9 @@ module.exports = {
       root: __dirname + '/public',
       verbose: true,
       dry: false, // true for simulation
+    }),
+    new webpack.DefinePlugin({
+      'MAP_KEY': JSON.stringify('AIzaSyBDEeNQITFwEvw4zEof9DOMEkd1CZ02BUU')
     }),
   ],
 };

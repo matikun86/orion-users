@@ -10,7 +10,7 @@ const LettersView = (props) => {
   });
 
   return (
-    <section className="letters">
+    <section className="content letters">
       <h4>Letters</h4>
 
       <ul className="table-responsive">

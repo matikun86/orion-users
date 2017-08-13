@@ -1,7 +1,49 @@
-html, body {
+html, body, #app, .container {
   height: 100%;
 }
 
+$container-margin: 15px;
 .container {
-  padding-top: 20px;
+  padding: $container-margin;
+}
+
+$nav-height-collapsed: 50px;
+$nav-height: 200px;
+$nav-margin: 15px;
+nav {
+  margin-bottom: $nav-margin;
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    transition: height 450ms ease;
+
+    &.collapsed {
+      height: $nav-height-collapsed;
+      .navbar-collapse {
+        opacity: 0;
+      }
+    }
+    &:not(.collapsed) {
+      height: $nav-height;
+
+      .navbar-collapse {
+        opacity: 1;
+      }
+    }
+  }
+  
+  @media (min-width: 768px) {
+    height: $nav-height-collapsed;
+    .navbar-collapse {
+      opacity: 1;
+    }
+  }
+
+  .navbar-collapse {
+    transition: opacity 300ms ease;
+  }
+}
+
+.content {
+  height: calc(100% - #{$nav-height-collapsed} - #{$nav-margin} - #{$container-margin});
 }
