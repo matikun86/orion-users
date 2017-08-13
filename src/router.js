@@ -2,7 +2,7 @@ import React from "react";
 import { Router, Route, IndexRoute } from "react-router";
 import { history } from "./store.js";
 import App from "./components/App";
-import Contacts from "./components/Contacts";
+import List from "./components/List";
 import Letters from "./components/Letters";
 import Map from "./components/Map";
 import NotFound from "./components/NotFound";
@@ -11,7 +11,7 @@ import NotFound from "./components/NotFound";
 const router = (
   <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
     <Route path="/" component={App}>
-      <IndexRoute component={Contacts}/>
+      <IndexRoute component={List}/>
       <Route path="/letters" component={Letters}/>
       <Route path="/map" component={Map}/>
       <Route path="*" component={NotFound}/>

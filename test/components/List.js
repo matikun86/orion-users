@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import assert from 'assert';
 import sinon from 'sinon';
 import _ from 'lodash';
-import { ContactsContainer } from '../../src/components/Contacts/ContactsContainer';
-import ContactsView from '../../src/components/Contacts/ContactsView';
+import { ListContainer } from '../../src/components/List/ListContainer';
+import ListView from '../../src/components/List/ListView';
 
 const mockedContacts = [{
   id: 1,
@@ -33,7 +33,7 @@ const mockedContacts = [{
 }];
 
 const noop = () => {};
-const shallowContactsView = (customProps = {}) => {
+const shallowListView = (customProps = {}) => {
   const defaultProps = {
     contacts: mockedContacts,
     filter: '',
@@ -41,30 +41,30 @@ const shallowContactsView = (customProps = {}) => {
     onFilterChange: noop
   };
   const props = _.defaults(customProps, defaultProps);
-  return shallow(<ContactsView {...props}/>);
+  return shallow(<ListView {...props}/>);
 }
 
-describe('Contacts component', () => {
+describe('List component', () => {
   describe('render()', () => {
     it('should render the component', () => {
       const props = {actions:{}, contacts: []};
-      const wrapper = shallow(<ContactsContainer {...props}/>);
+      const wrapper = shallow(<ListContainer {...props}/>);
 
       assert.equal(wrapper.length, 1);
     });
   });
 });
 
-describe('ContactsView', () => {
+describe('ListView', () => {
   describe('render()', () => {
     it('should render the component', () => {
-      const wrapper = shallowContactsView();
+      const wrapper = shallowListView();
 
       assert.equal(wrapper.length, 1);
     });
     
     it('should show contacts', () => {
-      const wrapper = shallowContactsView();
+      const wrapper = shallowListView();
 
       assert.equal(wrapper.update().find('table tbody tr').length, mockedContacts.length);
     });
@@ -73,14 +73,14 @@ describe('ContactsView', () => {
       const props = {
         onContactClick: sinon.spy()
       };
-      const wrapper = shallowContactsView(props);
+      const wrapper = shallowListView(props);
       wrapper.find('table tbody tr').first().simulate('click');
 
       assert.ok(props.onContactClick.called);
     });
 
     it('should filter results by input value', () => {
-      const wrapper = shallowContactsView({
+      const wrapper = shallowListView({
         filter: 'Joh'
       });
       const $inputSearch = wrapper.find('input[type="search"]');

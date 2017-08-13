@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
 import actions from './../../actions.js'
-import ContactsView from "./ContactsView";
+import ListView from "./ListView";
 import ContactCard from "./ContactCard";
 import update from 'immutability-helper';
 
-export class ContactsContainer extends React.Component {
+export class ListContainer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -32,7 +32,7 @@ export class ContactsContainer extends React.Component {
   render() {
     return (
       <div className="content contacts">
-        <ContactsView
+        <ListView
           contacts={this.props.contacts}
           filter={this.state.filter}
           onContactClick={this.onContactClick}
@@ -54,4 +54,4 @@ function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(actions, dispatch) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ListContainer);

@@ -9,8 +9,11 @@ export class MapContainer extends React.Component {
     super(props);
 
     this.state = {
-      markers: this.getMarkersFromContacts(props.contacts)
+      markers: this.getMarkersFromContacts(props.contacts),
+      showMarkers: false // We use this to avoid showing markers before map loads.
     };
+
+    this.onMapLoaded = this.onMapLoaded.bind(this);
   }
 
   componentWillUpdate(props) {
@@ -32,9 +35,18 @@ export class MapContainer extends React.Component {
     }));
   }
 
+  onMapLoaded() {
+    this.setState(update(this.state, {
+      showMarkers: { $set: true }
+    }));
+  }
+
   render() {
     return (
-      <MapView markers={this.state.markers} />
+      <MapView
+        markers={this.state.markers}
+        onMapLoaded={this.onMapLoaded}
+        showMarkers={this.state.showMarkers} />
     );
   }
 }

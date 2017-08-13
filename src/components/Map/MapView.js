@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import GoogleMapReact from 'google-map-react';
 import './Map.scss';
@@ -15,8 +16,9 @@ const MapView = (props) => {
         bootstrapURLKeys={{key: MAP_KEY}}
         defaultCenter={props.center}
         defaultZoom={props.zoom}
+        onGoogleApiLoaded={props.onMapLoaded}
       >
-        {_.map(props.markers, (marker) => (
+        {props.showMarkers && _.map(props.markers, (marker) => (
           <Marker
             key={marker.id}
             lat={marker.position.lat}
@@ -34,5 +36,13 @@ MapView.defaultProps = {
   },
   zoom: 1
 }
+
+MapView.propTypes = {
+  center: PropTypes.object,
+  markers: PropTypes.array.isRequired,
+  onMapLoaded: PropTypes.func.isRequired,
+  showMarkers: PropTypes.bool,
+  zoom: PropTypes.number
+};
 
 export default MapView;

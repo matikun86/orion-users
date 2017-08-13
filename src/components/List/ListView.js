@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import './Contacts.scss';
+import './List.scss';
 
-const ContactsView = (props) => {
+const ListView = (props) => {
   const filterUppercase = props.filter.toUpperCase();
 
   return (
     <section className="contacts">
       <h4>Contacts</h4>
 
-      <input type="search" placeholder="search" name="routeNumber" value={props.filter} onChange={props.onFilterChange} />
+      <form className="form-inline">
+        <div className="form-group">
+          <label className="sr-only" htmlFor="exampleInputEmail3">Search</label>
+          <input type="search" className="form-control" id="exampleInputEmail3" placeholder="Search" value={props.filter} onChange={props.onFilterChange} />
+        </div>
+      </form>
       
       <div className="table-responsive">
         <table className="table table-hover">
@@ -47,11 +52,11 @@ const ContactsView = (props) => {
   );
 };
 
-ContactsView.propTypes = {
+ListView.propTypes = {
   contacts: PropTypes.array.isRequired,
   filter: PropTypes.string.isRequired,
   onContactClick: PropTypes.func.isRequired,
   onFilterChange: PropTypes.func.isRequired
 };
 
-export default ContactsView;
+export default ListView;

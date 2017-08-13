@@ -31,17 +31,36 @@ global.MAP_KEY = 'AIzaSyBDEeNQITFwEvw4zEof9DOMEkd1CZ02BUU';
 describe('MapView', () => {
   describe('render()', () => {
     it('should render the component', () => {
-      const props = { markers: mockedMarkers }
+      const props = {
+        markers: mockedMarkers,
+        onMapLoaded: () => {},
+        showMarkers: true
+      };
       const wrapper = shallow(<MapView {...props}/>)
 
       assert.equal(wrapper.length, 1);
     });
     
     it('should show markers', () => {
-      const props = { markers: mockedMarkers }
+      const props = {
+        markers: mockedMarkers,
+        onMapLoaded: () => {},
+        showMarkers: true
+      };
       const wrapper = shallow(<MapView {...props}/>)
 
       assert.equal(wrapper.update().find('Marker').length, mockedMarkers.length);
+    });
+    
+    it('should not show markers if showMarkers is false', () => {
+      const props = {
+        markers: mockedMarkers,
+        onMapLoaded: () => {},
+        showMarkers: false
+      };
+      const wrapper = shallow(<MapView {...props}/>)
+
+      assert.equal(wrapper.update().find('Marker').length, 0);
     });
   });
 });
