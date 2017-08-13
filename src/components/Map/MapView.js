@@ -6,7 +6,7 @@ import './Map.scss';
 
 const Marker = ({ text }) => <div className="marker">
   <p className="name">{text}</p>
-  <img className="icon" src="/media/marker.png" title={text} />
+  <img className="icon" src="media/marker.png" title={text} />
 </div>;
 
 const MapView = (props) => {

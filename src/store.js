@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import { browserHistory } from "react-router";
+import { hashHistory } from "react-router";
 import { syncHistoryWithStore, routerMiddleware } from "react-router-redux";
 import freeze from "redux-freeze";
 import { reducers } from "./reducers/index";
@@ -8,7 +8,7 @@ import { reducers } from "./reducers/index";
 let middlewares = [];
 
 // add the router middleware
-middlewares.push(routerMiddleware(browserHistory));
+middlewares.push(routerMiddleware(hashHistory));
 
 // add the freeze dev middleware
 if (process.env.NODE_ENV !== 'production') {
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== 'production' && window.devToolsExtension) {
 
 // create the store
 const store = createStore(reducers, middleware);
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 
 // export
 export { store, history };
